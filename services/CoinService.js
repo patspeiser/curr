@@ -1,4 +1,3 @@
-const request = require('request');
 const path = require('path');
 const RequestService = require(path.join(__dirname, 'RequestService')).methods;
 const Coin = require(path.join(__dirname, 'StorageService')).models.Coin;

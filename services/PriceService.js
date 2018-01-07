@@ -1,6 +1,5 @@
 const request = require('request');
 const path = require('path');
-const config = require(path.join(__dirname, 'config')).config;
 const RequestService = require(path.join(__dirname, 'RequestService')).methods;
 const Coin = require(path.join(__dirname, 'StorageService')).models.Coin;
 const endpoint = 'price';
