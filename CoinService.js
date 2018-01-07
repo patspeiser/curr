@@ -1,25 +1,27 @@
 const request = require('request');
 const path = require('path');
-const config = require(path.join(__dirname, 'config.js')).config;
-const apiKey = config.apiKey;
-const baseUrl = config.baseUrl;
+const RequestService = require(path.join(__dirname, 'RequestService')).methods;
+const Coin = require(path.join(__dirname, 'StorageService')).models.Coin;
+const endpoint = 'coins';
 
-var headers = {
-	'User-Agent': 'anokuseragent',
-	'Content-Type': 'application/json',
-	'EVERCOIN-API-KEY': apiKey,
+function getCoins(){
+	return new Promise(function(resolve, reject) {
+		RequestService.makeRequest('GET', endpoint)
+		.then(function(result){
+			resolve(result);
+		}, function(error){
+			reject(error);
+		});
+	});
 }
 
-var options = {
-	url: baseUrl + '/coins',
-	method: 'GET',
-	headers: headers,
-};
-
-request(options, function(error, response, body){
-	if (!error && response.statusCode == 200){
-		console.log(body);
-	} else {
-		console.log(error);
-	}
+getCoins().then(function(result){
+	var coinList = result.result;
+	coinList.forEach(function(coin){
+		Coin.create(coin);
+	})
 });
+
+module.exports = {
+	getCoins: getCoins
+}
