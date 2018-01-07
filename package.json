@@ -4,11 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon PriceService.js"
+    "start:dev": "cross-env ENVIRONMENT=dev nodemon CoinService.js",
+    "start:prod": "cross-env ENVIRONMENT=prod node CoinService.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cross-env": "^5.1.3",
     "nodemon": "^1.14.8",
     "request": "^2.83.0"
   }

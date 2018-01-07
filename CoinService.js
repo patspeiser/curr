@@ -1,8 +1,8 @@
 const request = require('request');
 const path = require('path');
-const config = require(path.join(__dirname, 'config.js'))
-const apiKey = config.dev.apiKey;
-const baseUrl = config.dev.baseUrl;
+const config = require(path.join(__dirname, 'config.js')).config;
+const apiKey = config.apiKey;
+const baseUrl = config.baseUrl;
 
 var headers = {
 	'User-Agent': 'anokuseragent',
@@ -10,17 +10,10 @@ var headers = {
 	'EVERCOIN-API-KEY': apiKey,
 }
 
-var body = { 
-	"depositCoin": "BTC",
-	"destinationCoin": "LTC",
-	"depositAmount": '1'
-}
-
 var options = {
-	url: baseUrl + '/price',
-	method: 'POST',
+	url: baseUrl + '/coins',
+	method: 'GET',
 	headers: headers,
-	body: JSON.stringify(body)
 };
 
 request(options, function(error, response, body){
