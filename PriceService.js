@@ -3,7 +3,7 @@ const path = require('path');
 const config = require(path.join(__dirname, 'config')).config;
 const RequestService = require(path.join(__dirname, 'RequestService')).methods;
 const Coin = require(path.join(__dirname, 'StorageService')).models.Coin;
-const endpoint = 'order';
+const endpoint = 'price';
 
 function _setRequestBody(coin, amount, otherCoin){
 	this.body = {
@@ -11,7 +11,7 @@ function _setRequestBody(coin, amount, otherCoin){
 		"depositAmount": amount,
 		"destinationCoin": otherCoin
 	};
-	
+
 	return this.body;
 }
 
@@ -19,7 +19,6 @@ function getPrice(coin, amount, otherCoin){
 	this.body = _setRequestBody(coin, amount, otherCoin);
 	return RequestService.makeRequest('POST', endpoint, this.body)
 	.then(function(result){
-		console.log(result.id, result.name, result.symbol, result.value);
 		return result;
 	}, function(error){
 		return error;

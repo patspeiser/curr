@@ -32,7 +32,6 @@ function makeRequest(method, endpoint, body){
 	
 	return new Promise( function(resolve, reject) {
 		request(req.options, function(error, response, body){
-			console.log(error, body);
 			if (!error && response.statusCode == 200){
 				resolve(JSON.parse(body));
 			} else {

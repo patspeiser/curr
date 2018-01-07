@@ -18,6 +18,7 @@ function getCoins(){
 getCoins().then(function(result){
 	var coinList = result.result;
 	coinList.forEach(function(coin){
+		//make-a-da coins mario
 		Coin.create(coin);
 	})
 });
