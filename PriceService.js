@@ -1,8 +1,8 @@
 const request = require('request');
 const path = require('path');
-const config = require(path.join(__dirname, 'config.js'))
-const apiKey = config.dev.apiKey;
-const baseUrl = config.dev.baseUrl;
+const config = require(path.join(__dirname, 'config.js')).config;
+const apiKey = config.apiKey;
+const baseUrl = config.baseUrl;
 
 var headers = {
 	'User-Agent': 'anokuseragent',
@@ -12,12 +12,16 @@ var headers = {
 
 var body = { 
 	"depositCoin": "BTC",
+	"refundAddress": '',
+	"depositAmount": '1',
 	"destinationCoin": "LTC",
-	"depositAmount": '1'
+	"destinationAddress": "",
+	"destinationAmmount": "",
+	"signature": ""
 }
 
 var options = {
-	url: baseUrl + '/price',
+	url: baseUrl + '/order',
 	method: 'POST',
 	headers: headers,
 	body: JSON.stringify(body)
