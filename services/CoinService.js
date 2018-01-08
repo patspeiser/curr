@@ -4,8 +4,9 @@ const Coin = require(path.join(__dirname, 'StorageService')).models.Coin;
 const endpoint = 'coins';
 
 function getCoins(){
+	this.method = 'GET';
 	return new Promise(function(resolve, reject) {
-		RequestService.makeRequest('GET', endpoint)
+		RequestService.makeRequest(this.method, endpoint)
 		.then(function(result){
 			resolve(result);
 		}, function(error){
@@ -14,14 +15,11 @@ function getCoins(){
 	});
 }
 
-getCoins().then(function(result){
-	var coinList = result.result;
-	coinList.forEach(function(coin){
-		//make-a-da coins mario
-		Coin.create(coin);
-	})
-});
+function createCoinPairList(){
+	var pairList = [];
+}
 
 module.exports = {
-	getCoins: getCoins
+	getCoins: getCoins,
+	createCoinPairList: createCoinPairList
 }

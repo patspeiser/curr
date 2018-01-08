@@ -23,6 +23,16 @@ var Request = function(method, endpoint, body){
 	}
 }
 
+function setRequestBody(coin, amount, otherCoin){
+	this.body = {
+		"depositCoin": coin,
+		"depositAmount": amount,
+		"destinationCoin": otherCoin
+	};
+
+	return this.body;
+}
+
 //calls constructor and makes request
 function makeRequest(method, endpoint, body){
 	this.method = method;
@@ -43,7 +53,8 @@ function makeRequest(method, endpoint, body){
 
 module.exports = {
 	methods: {
-		makeRequest: makeRequest
+		makeRequest: makeRequest,
+		setRequestBody: setRequestBody
 	}
 }
 
