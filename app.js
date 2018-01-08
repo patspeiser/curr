@@ -8,5 +8,5 @@ const Models = StorageService.models;
 module.exports = app;
 
 app.get('/prices', function(){
-	res.send('ayo prices here');	
+	Services.PriceService.getPriceList();
 })

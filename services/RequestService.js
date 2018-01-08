@@ -11,16 +11,12 @@ var Request = function(method, endpoint, body){
 		'Content-Type': 'application/json',
 		'EVERCOIN-API-KEY': apiKey
 	};
-	this.body = body;
 	this.options = {
 		uri: baseUrl + endpoint,
 		method: method,
 		headers: this.headers,
+		body: JSON.stringify(body)
 	};
-
-	if (this.body){
-		this.options.body = JSON.stringify(this.body);
-	}
 }
 
 function setRequestBody(coin, amount, otherCoin){
@@ -29,7 +25,6 @@ function setRequestBody(coin, amount, otherCoin){
 		"depositAmount": amount,
 		"destinationCoin": otherCoin
 	};
-
 	return this.body;
 }
 
@@ -39,7 +34,6 @@ function makeRequest(method, endpoint, body){
 	this.endpoint = endpoint;
 	this.body = body;
 	var req = new Request(this.method, this.endpoint, this.body);
-	
 	return new Promise( function(resolve, reject) {
 		request(req.options, function(error, response, body){
 			if (!error && response.statusCode == 200){
