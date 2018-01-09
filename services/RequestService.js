@@ -11,6 +11,7 @@ var Request = function(method, endpoint, body){
 		'Content-Type': 'application/json',
 		'EVERCOIN-API-KEY': apiKey
 	};
+	this.body = body;
 	this.options = {
 		uri: baseUrl + endpoint,
 		method: method,
@@ -35,14 +36,12 @@ function makeRequest(method, endpoint, body){
 	this.body = body;
 	this.req = new Request(this.method, this.endpoint, this.body);
 	var that = this;
-	
 	return new Promise( function(resolve, reject) {
 		request(that.req.options, function(error, response, body){
-			console.log(error, body);
 			if (!error && response.statusCode == 200){
 				resolve(JSON.parse(body));
 			} else {
-				reject(JSON.parse(error)); 
+				reject(); 
 			}
 		});
 	})

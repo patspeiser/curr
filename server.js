@@ -9,42 +9,28 @@ const OrderService = Services.OrderService;
 const Coin = StorageService.models.Coin;
 const Price = StorageService.models.Price;
 const SYNC = process.env.SYNC; 
+const io = require('socket.io')(server);
 
 StorageService.db.sync({force: process.env.SYNC}).then(function(){
-	console.log('db synced');
-	server.listen(port, function(){
-		startUpMessage();
-		
+	server.listen(port, function(){ console.log('server on port: ', port)});
+
+	io.on('connection', function(socket){
 		Services.CoinService.getCoins().then(function(coins){
-			if(coins.error)
-				console.log(coins.error);
 			if(coins.result) {
 				var coins = coins.result;
+
 				for (let i = 0; i < coins.length; i++){
+					console.log(coins[i]);
 					Coin.findOrCreate({where: { symbol: coins[i].symbol}, defaults: coins[i] });
 				}
 			}
 		});
 
 		setInterval(function(){
-			return PriceService.getAllPrices().then(function(prices){
-				return prices;
-			})}, 36000);
-
-/* 
-		setInterval(function(){
-			Price.findOne().then(function(price){
-				OrderService.createOrder(price).then(function(order){
-					console.log('herp')
-				})
-			})
-		
-		}, 3000);
-*/
+			socket.emit('price', 'getAllPrices');
+			//socket.emit('price', 'getAllPrices');
+			//socket.emit('price', 'getAllPrices');
+			//socket.emit('price', 'getAllPrices');
+		}, 5000);
 	});
 });
-
-function startUpMessage(){
-	console.log('...server running on port', port);
-	console.log('...getting coins');	
-};
