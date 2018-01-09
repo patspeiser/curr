@@ -20,7 +20,6 @@ StorageService.db.sync({force: process.env.SYNC}).then(function(){
 				var coins = coins.result;
 
 				for (let i = 0; i < coins.length; i++){
-					console.log(coins[i]);
 					Coin.findOrCreate({where: { symbol: coins[i].symbol}, defaults: coins[i] });
 				}
 			}
@@ -28,9 +27,7 @@ StorageService.db.sync({force: process.env.SYNC}).then(function(){
 
 		setInterval(function(){
 			socket.emit('price', 'getAllPrices');
-			//socket.emit('price', 'getAllPrices');
-			//socket.emit('price', 'getAllPrices');
-			//socket.emit('price', 'getAllPrices');
+			//socket.emit('price', 'getPrice');
 		}, 5000);
 	});
 });

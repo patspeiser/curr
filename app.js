@@ -19,11 +19,6 @@ socket.on('price', function(fn){
 		default: 
 			break; 
 	}
-	/*
-	PriceService.getAllPrices().then(function(prices){
-		res.send(prices);	
-	});
-	*/
 });
 
 socket.on('order', function(){

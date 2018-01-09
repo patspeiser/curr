@@ -19,7 +19,6 @@ function getPrice(coin, amount, otherCoin){
 }
 
 function getAllPrices(){
-	console.log('getting all prices function');
 	var method = 'POST';
 	var symbols = [];
 	return Coin.findAll().then(function(coins){
@@ -42,7 +41,6 @@ function getAllPrices(){
 			var body = RequestService.setRequestBody(pairs[i][0], 1, pairs[i][1])
 			bodies.push(body);
 		};
-		console.log(bodies);
 		return RequestService
 		.makeRequest(method, endpoint, bodies)
 		.then(function(result){
@@ -51,6 +49,8 @@ function getAllPrices(){
 				Price.create(price);
 			});
 			return result;	
+		}, function(error){
+			return error;
 		});
 	});
 };

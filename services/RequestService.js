@@ -3,6 +3,7 @@ const path = require('path');
 const config = require(path.join(__dirname, '../config.js')).config;
 const apiKey = config.apiKey;
 const baseUrl = config.baseUrl;
+const chalk = require('chalk');
 
 //request constructor
 var Request = function(method, endpoint, body){
@@ -11,7 +12,6 @@ var Request = function(method, endpoint, body){
 		'Content-Type': 'application/json',
 		'EVERCOIN-API-KEY': apiKey
 	};
-	this.body = body;
 	this.options = {
 		uri: baseUrl + endpoint,
 		method: method,
@@ -36,12 +36,14 @@ function makeRequest(method, endpoint, body){
 	this.body = body;
 	this.req = new Request(this.method, this.endpoint, this.body);
 	var that = this;
+	
 	return new Promise( function(resolve, reject) {
 		request(that.req.options, function(error, response, body){
 			if (!error && response.statusCode == 200){
 				resolve(JSON.parse(body));
 			} else {
-				reject(); 
+				console.log(chalk.red(body));
+				reject(JSON.parse(body)); 
 			}
 		});
 	})
