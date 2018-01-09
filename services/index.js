@@ -6,4 +6,5 @@ module.exports = {
 	PriceService: 	require(path.join(__dirname, 'PriceService')),
 	RequestService: require(path.join(__dirname, 'RequestService')),
 	StorageService: require(path.join(__dirname, 'StorageService')),
+	EvaluateService: require(path.join(__dirname, 'EvaluateService')),
 };
