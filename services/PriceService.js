@@ -19,6 +19,7 @@ function getPrice(coin, amount, otherCoin){
 }
 
 function getAllPrices(){
+	console.log('getting all prices');
 	var method = 'POST';
 	var symbols = [];
 	return Coin.findAll().then(function(coins){

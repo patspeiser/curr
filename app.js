@@ -4,6 +4,7 @@ const path = require('path');
 const Services = require(path.join(__dirname, 'services'));
 const StorageService = Services.StorageService;
 const PriceService = Services.PriceService;
+const OrderService = Services.OrderService;
 const Models = StorageService.models;
 
 module.exports = app;
@@ -15,5 +16,7 @@ app.get('/prices', function(req, res, next){
 });
 
 app.get('/order', function(req, res, next){
-	
+	OrderService.createOrder().then(function(order){
+		res.send(order);
+	});
 })

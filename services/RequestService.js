@@ -6,7 +6,6 @@ const baseUrl = config.baseUrl;
 
 //request constructor
 var Request = function(method, endpoint, body){
-	this.body;
 	this.headers = {
 		'User-Agent': 'anokuseragent',
 		'Content-Type': 'application/json',
@@ -39,6 +38,7 @@ function makeRequest(method, endpoint, body){
 	
 	return new Promise( function(resolve, reject) {
 		request(that.req.options, function(error, response, body){
+			console.log(error, body);
 			if (!error && response.statusCode == 200){
 				resolve(JSON.parse(body));
 			} else {
