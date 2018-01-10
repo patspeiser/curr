@@ -18,8 +18,34 @@ const GdaxProduct = db.define('gdax_product', {
     post_only: 	 	  {type: db.Sequelize.STRING},
     limit_only: 	  {type: db.Sequelize.STRING}
 });
-			
-	/* GET /products 
+
+const GdaxType = db.define('gdax_type', {
+	name: {type: db.Sequelize.STRING}
+})
+
+const GdaxMessage = db.define('gdax_message', {
+	type: 		{type: db.Sequelize.STRING},
+	order_id: 	{type: db.Sequelize.STRING},
+	order_type: {type: db.Sequelize.STRING},
+	size: 		{type: db.Sequelize.FLOAT},
+	price: 		{type: db.Sequelize.FLOAT},
+	side: 		{type: db.Sequelize.STRING},
+	product_id: {type: db.Sequelize.STRING},
+	sequence: 	{type: db.Sequelize.FLOAT},
+	time: 		{type: db.Sequelize.STRING}
+});
+
+module.exports = {
+	db: db,
+	models: {
+		Gdax: {
+			GdaxProduct: GdaxProduct,
+			GdaxMessage: GdaxMessage,
+			GdaxType:   GdaxType
+		}	
+	}
+}
+	/* GET gdax /products 
 	   { id: 'BTC-USD',
 	    base_currency: 'BTC',
 	    quote_currency: 'USD',
@@ -35,20 +61,24 @@ const GdaxProduct = db.define('gdax_product', {
 	    post_only: false,
 	    limit_only: false } 
 	*/
+	/* get gdax wss message
+		{ type: 'received',
+  		order_id: 'dd34187b-d2ab-414d-82af-0099ee82010f',
+  		order_type: 'limit',
+  		size: '0.00011951',
+  		price: '14433.42000000',
+  		side: 'buy',
+  		product_id: 'BTC-USD',
+  		sequence: 4830794167,
+  		time: '2018-01-10T20:56:53.615000Z' }
+  */
 
-module.exports = {
-	db: db,
-	models: {
-		Gdax: {
-			GdaxProduct: GdaxProduct	
-		}
+
 		//Evercoin: {
 		//		EvercoinCoin: EvercoinCoin,
 		//		EvercoinPrice: EvercoinPrice,
 		//		EvercoinOrder: EvercoinOrder
 		//},
-	}
-}
 
 /*
 const EvercoinCoin = db.define('evercoinCoin', {

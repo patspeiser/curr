@@ -12,7 +12,7 @@ function getProducts(){
 			//change key name. sequelize doesnt like it
 			product['gdax_product_id'] = product['id'];
 			delete product['id'];
-			GdaxProduct.create(product).then(function(product){
+			GdaxProduct.findOrCreate({where: {gdax_product_id: product['gdax_product_id']}, defaults: product }).then(function(product){
 				return product; 
 			});
 		});
