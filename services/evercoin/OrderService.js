@@ -1,9 +1,9 @@
 const request = require('request');
 const path = require('path');
 const endpoint = 'order';
-const RequestService = require(path.join(__dirname, 'RequestService')).methods;
-const StorageService = require(path.join(__dirname, 'StorageService'));
-const config = require(path.join(__dirname, '../config.js')).config;
+const RequestService = require(path.join(__dirname, '../RequestService')).methods;
+const StorageService = require(path.join(__dirname, '../StorageService'));
+const config = require(path.join(__dirname, '../../config.js')).config;
 
 module.exports = {
 	Order: Order,

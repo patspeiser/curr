@@ -6,7 +6,7 @@ const Price = require(path.join(__dirname, 'StorageService')).models.Price;
 const chalk = require('chalk');
 
 function evalCoinPrices(){
-	console.log('eval coin prices');
+	//console.log('eval coin prices');
 }
 
 module.exports = {evalCoinPrices: evalCoinPrices};

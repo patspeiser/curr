@@ -10,7 +10,7 @@ var Request = function(method, endpoint, body){
 	this.headers = {
 		'User-Agent': 'anokuseragent',
 		'Content-Type': 'application/json',
-		'EVERCOIN-API-KEY': apiKey
+		
 	};
 
 	this.options = {
@@ -42,7 +42,6 @@ function makeRequest(method, endpoint, body){
 			if (!error && response.statusCode == 200){
 				resolve(JSON.parse(body));
 			} else {
-				console.log(chalk.red(body));
 				reject(JSON.parse(body)); 
 			}
 		});

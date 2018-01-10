@@ -1,6 +1,6 @@
 const path = require('path');
-const RequestService = require(path.join(__dirname, 'RequestService')).methods;
-const Coin = require(path.join(__dirname, 'StorageService')).models.Coin;
+const RequestService = require(path.join(__dirname, '../RequestService')).methods;
+const Coin = require(path.join(__dirname, '../StorageService')).models.Coin;
 const endpoint = 'coins';
 
 function getCoins(){
