@@ -1,3 +1,4 @@
+/*
 const path = require('path');
 const RequestService = require(path.join(__dirname, '../RequestService')).methods;
 const Coin = require(path.join(__dirname, '../StorageService')).models.Coin;
@@ -23,3 +24,4 @@ module.exports = {
 	getCoins: getCoins,
 	createCoinPairList: createCoinPairList
 }
+*/

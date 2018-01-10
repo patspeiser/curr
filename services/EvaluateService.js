@@ -1,3 +1,4 @@
+/*
 const request = require('request');
 const path = require('path');
 const RequestService = require(path.join(__dirname, 'RequestService')).methods;
@@ -10,3 +11,4 @@ function evalCoinPrices(){
 }
 
 module.exports = {evalCoinPrices: evalCoinPrices};
+*/

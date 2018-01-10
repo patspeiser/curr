@@ -2,37 +2,8 @@ const Sequelize = require('sequelize');
 const urlString = "postgres://postgres:postgres@localhost/curr";
 const db = new Sequelize(process.env.DATABASE_URL || urlString, {logging: false} );
 
-/*
-const EvercoinCoin = db.define('evercoinCoin', {
-	name: 				{type: db.Sequelize.STRING, unique: true},
-	symbol: 			{type: db.Sequelize.STRING, unique:true},
-	value: 				{type: db.Sequelize.FLOAT},
-	tagName: 			{type: db.Sequelize.STRING},
-	fromAvailable: 		{type: db.Sequelize.BOOLEAN},
-	toAvailable: 		{type: db.Sequelize.BOOLEAN}
-});
-
-const EvercoinPrice = db.define('evercoinPrice', {
-	depositCoin: 	 	{type: db.Sequelize.STRING},
-	destinationCoin: 	{type: db.Sequelize.STRING},
-	depositAmount: 		{type: db.Sequelize.STRING},
-	destinationAmount: 	{type: db.Sequelize.STRING},
-	signature: 			{type: db.Sequelize.STRING}
-});
-
-const EvercoinOrder = db.define('evercoinOrder', {
-	depositCoin: 	 	{type: db.Sequelize.STRING},
-	destinationCoin: 	{type: db.Sequelize.STRING},
-	depositAmount: 		{type: db.Sequelize.STRING},
-	destinationAmount: 	{type: db.Sequelize.STRING},
-	signature: 			{type: db.Sequelize.STRING},
-	destinationAddress: {type: db.Sequelize.STRING},
-	refundAddress: 		{type: db.Sequelize.STRING}
-});
-*/
-
 const GdaxProduct = db.define('gdax_product', {
-	id_string: 		  {type: db.Sequelize.STRING},
+	gdax_product_id:  {type: db.Sequelize.STRING},
     base_currency:    {type: db.Sequelize.STRING},
     quote_currency:   {type: db.Sequelize.STRING},
     base_min_size:    {type: db.Sequelize.FLOAT},
@@ -68,13 +39,42 @@ const GdaxProduct = db.define('gdax_product', {
 module.exports = {
 	db: db,
 	models: {
-		Evercoin: {
-				EvercoinCoin: EvercoinCoin,
-				EvercoinPrice: EvercoinPrice,
-				EvercoinOrder: EvercoinOrder
-		},
 		Gdax: {
-				GdaxProduct: GdaxProduct	
+			GdaxProduct: GdaxProduct	
 		}
+		//Evercoin: {
+		//		EvercoinCoin: EvercoinCoin,
+		//		EvercoinPrice: EvercoinPrice,
+		//		EvercoinOrder: EvercoinOrder
+		//},
 	}
 }
+
+/*
+const EvercoinCoin = db.define('evercoinCoin', {
+	name: 				{type: db.Sequelize.STRING, unique: true},
+	symbol: 			{type: db.Sequelize.STRING, unique:true},
+	value: 				{type: db.Sequelize.FLOAT},
+	tagName: 			{type: db.Sequelize.STRING},
+	fromAvailable: 		{type: db.Sequelize.BOOLEAN},
+	toAvailable: 		{type: db.Sequelize.BOOLEAN}
+});
+
+const EvercoinPrice = db.define('evercoinPrice', {
+	depositCoin: 	 	{type: db.Sequelize.STRING},
+	destinationCoin: 	{type: db.Sequelize.STRING},
+	depositAmount: 		{type: db.Sequelize.STRING},
+	destinationAmount: 	{type: db.Sequelize.STRING},
+	signature: 			{type: db.Sequelize.STRING}
+});
+
+const EvercoinOrder = db.define('evercoinOrder', {
+	depositCoin: 	 	{type: db.Sequelize.STRING},
+	destinationCoin: 	{type: db.Sequelize.STRING},
+	depositAmount: 		{type: db.Sequelize.STRING},
+	destinationAmount: 	{type: db.Sequelize.STRING},
+	signature: 			{type: db.Sequelize.STRING},
+	destinationAddress: {type: db.Sequelize.STRING},
+	refundAddress: 		{type: db.Sequelize.STRING}
+});
+*/

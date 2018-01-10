@@ -6,14 +6,14 @@ const Services = require(path.join(__dirname, 'services'));
 const SYNC = process.env.SYNC; 
 const io = require('socket.io')(server);
 
-Services.StorageService.db.sync({force: process.env.SYNC}).then(function(){
+Services.db.sync({force: process.env.SYNC}).then(function(){
 	server.listen(port, function(){ console.log('server on port: ', port)});
 
 	io.on('connection', function(socket){
 		
 		setInterval(function(){
-			socket.emit('price', 'getAllPrices');
-		}, 5000);
+			socket.emit('price', 'getGdaxPrices');
+		}, 1000);
 
 		setInterval(function(){
 			socket.emit('eval');
